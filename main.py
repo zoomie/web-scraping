@@ -20,7 +20,7 @@ def get_all_property_links(url):
 
 def get_pages_urls():
     all_house_urls = []
-    for i in range(2, 29):
+    for i in range(2, 3): # 29
         list_page_list = f'https://www.pamgolding.co.za/property-search/properties-for-sale-st-francis-bay/311/page{i}'
         print(f'Getting for {i}')
         house_urls = get_all_property_links(list_page_list)
@@ -33,7 +33,7 @@ def get_property_info(page_link):
     soup = BeautifulSoup(page.text, 'html.parser')
     image_path = soup.find(class_='mainImage').find('img')['src']
     price_raw = soup.find(class_='propertyInfoWrapper').find(class_='totalVal')
-    price = price_raw.text.replace(' ', '').replace('\r', '').replace('\n','')
+    price = price_raw.text.replace(' ', '').replace('\r', '').replace('\n', '')
     address = soup.find(class_='address-text').text
     if address:
         return {'price': price,
